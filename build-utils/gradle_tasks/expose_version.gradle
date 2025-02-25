@@ -1,0 +1,10 @@
+processResources {
+    filesMatching('application.properties') {
+        expand(project.properties)
+    }
+}
+
+System.setProperty("version", version)
+task getVersion() {
+    System.out.print System.getProperty("version")
+}

@@ -1,0 +1,20 @@
+class incrementVersion implements Plugin<Project> {
+    void apply(Project project) {
+        project.task('incrementVersion') {
+            doLast {
+                ant.propertyfile(
+                        file: "gradle.properties") {
+                    entry(key: "version", value: parseVersion(project.version))
+                }
+            }
+        }
+    }
+
+    String parseVersion(String version) {
+        def (major, minor, bug) = version.tokenize('.')
+        bug = Integer.parseInt(bug) + 1
+        return major + '.' + minor + '.' + bug
+    }
+}
+
+apply plugin: incrementVersion

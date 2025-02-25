@@ -1,0 +1,8 @@
+task buildDockerfile(type: Copy) {
+    from 'build-utils/templates'
+    include 'Dockerfile'
+    into "$buildDir"
+    expand([
+            project_name: jar.baseName
+    ])
+}

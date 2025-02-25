@@ -1,0 +1,10 @@
+apply plugin: 'checkstyle'
+
+checkstyle {
+    toolVersion "8.3"
+    configFile = rootProject.file('build-utils/config/checkstyle/checkstyle.xml')
+}
+
+tasks.withType(Checkstyle) {
+    exclude '**/domain/**'
+}
